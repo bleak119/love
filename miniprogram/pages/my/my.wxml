@@ -1,0 +1,46 @@
+<!-- pages/my/my.wxml -->
+<view class="my-container">
+  <!-- User profile -->
+  <view class="profile-card">
+    <image 
+      class="avatar"
+      src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"
+      mode="aspectFill"/>
+    <view class="user-info">
+      <view class="nickname">{{userInfo.nickname || 'User'}}</view>
+      <view class="openid">ID: {{userInfo.openid}}</view>
+    </view>
+  </view>
+
+  <!-- Menu items -->
+  <view class="menu-container">
+    <view class="menu-item" bindtap="navigateTo" data-page="favorites">
+      <view class="menu-icon">❤️</view>
+      <view class="menu-text">My Favorites</view>
+      <view class="menu-arrow">›</view>
+    </view>
+
+    <view class="menu-item" bindtap="navigateTo" data-page="history">
+      <view class="menu-icon">🕐</view>
+      <view class="menu-text">Play History</view>
+      <view class="menu-arrow">›</view>
+    </view>
+
+    <view class="menu-item" bindtap="navigateTo" data-page="playlists">
+      <view class="menu-icon">📋</view>
+      <view class="menu-text">My Playlists</view>
+      <view class="menu-arrow">›</view>
+    </view>
+
+    <view class="menu-item" bindtap="navigateTo" data-page="settings">
+      <view class="menu-icon">⚙️</view>
+      <view class="menu-text">Settings</view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- Logout button -->
+  <view class="button-container">
+    <button class="logout-btn" bindtap="logout">Logout</button>
+  </view>
+</view>

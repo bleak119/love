@@ -1,0 +1,81 @@
+<!-- pages/index/index.wxml -->
+<view class="index-container">
+  <!-- Search bar -->
+  <view class="search-container">
+    <input 
+      class="search-input"
+      placeholder="Search songs or artists..."
+      bindchange="handleSearch"
+      value="{{searchKeyword}}"
+      confirm-type="search"
+      bindconfirm="performSearch"/>
+  </view>
+
+  <!-- Tab navigation -->
+  <view class="tab-container">
+    <view 
+      class="tab-item {{activeTab === 'all' ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="all">
+      Discover
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'favorites' ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="favorites">
+      Favorites
+    </view>
+  </view>
+
+  <!-- Music list -->
+  <scroll-view
+    class="music-list"
+    scroll-y
+    bindscrolltolower="loadMore"
+    lower-threshold="100">
+    
+    <block wx:if="{{loading && !musics.length}}">
+      <view class="loading">Loading...</view>
+    </block>
+
+    <block wx:elif="{{musics.length > 0}}">
+      <view 
+        class="music-item"
+        wx:for="{{musics}}"
+        wx:key="id"
+        bindtap="playMusic"
+        data-id="{{item.id}}">
+        
+        <view class="music-cover">
+          <image 
+            src="{{item.coverUrl || '/images/default-cover.png'}}"
+            mode="aspectFill"/>
+        </view>
+
+        <view class="music-info">
+          <view class="music-title">{{item.title}}</view>
+          <view class="music-artist">{{item.artist}}</view>
+        </view>
+
+        <view class="music-actions">
+          <button 
+            class="favorite-btn {{favorites[item.id] ? 'favorited' : ''}}"
+            bindtap="toggleFavorite"
+            data-id="{{item.id}}"
+            catchtap>
+            {{favorites[item.id] ? '❤️' : '🤍'}}
+          </button>
+        </view>
+      </view>
+
+      <view wx:if="{{!hasMore}}" class="no-more">No more songs</view>
+    </block>
+
+    <block wx:else>
+      <view class="empty-state">
+        <view class="empty-icon">🎵</view>
+        <view class="empty-text">No songs found</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

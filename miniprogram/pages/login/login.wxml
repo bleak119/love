@@ -1,0 +1,25 @@
+<!-- pages/login/login.wxml -->
+<view class="login-container">
+  <view class="logo">
+    <text>🎵 Love Music</text>
+  </view>
+
+  <view class="login-content">
+    <view class="title">Welcome to Love Music</view>
+    <view class="subtitle">Your music, your way</view>
+
+    <button 
+      class="login-btn"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="handleGetPhoneNumber">
+      Login with WeChat
+    </button>
+
+    <view class="terms">
+      <text>By logging in, you agree to our </text>
+      <navigator url="/pages/terms/terms" hover-class="none">Terms of Service</navigator>
+      <text> and </text>
+      <navigator url="/pages/privacy/privacy" hover-class="none">Privacy Policy</navigator>
+    </view>
+  </view>
+</view>

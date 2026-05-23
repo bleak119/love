@@ -1,0 +1,80 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.mvn/timing.properties
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Gradle
+.gradle/
+build/
+
+# Spring Boot
+*.log
+*.pid
+*.pid.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Database
+*.sql
+*.db
+*.sqlite
+*.db-shm
+*.db-wal
+
+# OS
+Thumbs.db
+.Thumbs.db
+
+# Project specific
+ssl/cert.pem
+ssl/key.pem
+/data/
+/backups/
+*.wda.js
+
+# Mini Program
+/miniprogram/node_modules/
+/miniprogram/.cache/

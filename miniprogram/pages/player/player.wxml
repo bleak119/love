@@ -1,0 +1,65 @@
+<!-- pages/player/player.wxml -->
+<view class="player-container">
+  <!-- Album cover -->
+  <view class="cover-container">
+    <image 
+      class="cover {{isPlaying ? 'playing' : ''}}"
+      src="{{music.coverUrl || '/images/default-cover.png'}}"
+      mode="aspectFill"/>
+  </view>
+
+  <!-- Music info -->
+  <view class="music-info-container">
+    <view class="music-title">{{music.title}}</view>
+    <view class="music-artist">{{music.artist}}</view>
+    <view class="music-duration">{{music.album}}</view>
+  </view>
+
+  <!-- Progress bar -->
+  <view class="progress-container">
+    <view class="time">{{currentTime}}</view>
+    <slider 
+      class="slider"
+      value="{{currentPosition}}"
+      max="{{music.durationSec || 0}}"
+      bindchange="handleSliderChange"
+      show-value="{{false}}"/>
+    <view class="time">{{totalTime}}</view>
+  </view>
+
+  <!-- Control buttons -->
+  <view class="controls-container">
+    <button class="control-btn" bindtap="toggleFavorite">
+      {{isFavorite ? '❤️' : '🤍'}}
+    </button>
+
+    <view class="player-buttons">
+      <button class="play-btn" bindtap="previousMusic">⏮</button>
+      <button class="play-btn main" bindtap="togglePlay">
+        {{isPlaying ? '⏸' : '▶'}}
+      </button>
+      <button class="play-btn" bindtap="nextMusic">⏭</button>
+    </view>
+
+    <button class="control-btn" bindtap="togglePlaylist">📋</button>
+  </view>
+
+  <!-- Playlist -->
+  <view class="playlist-container" wx:if="{{showPlaylist}}">
+    <view class="playlist-header">
+      <view class="playlist-title">Now Playing</view>
+      <button class="close-btn" bindtap="togglePlaylist">✕</button>
+    </view>
+
+    <scroll-view class="playlist-list" scroll-y>
+      <view 
+        class="playlist-item {{currentMusicIndex === index ? 'active' : ''}}"
+        wx:for="{{currentPlaylist}}"
+        wx:key="id"
+        bindtap="playFromPlaylist"
+        data-index="{{index}}">
+        {{index + 1}}. {{item.title}} - {{item.artist}}
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+<!-- pages/favorites/favorites.wxml -->
+<view class="favorites-container">
+  <view class="header">
+    <view class="header-title">My Favorites</view>
+    <button class="back-btn" bindtap="goBack">‹</button>
+  </view>
+
+  <scroll-view class="favorites-list" scroll-y>
+    <block wx:if="{{loading}}">
+      <view class="loading">Loading...</view>
+    </block>
+
+    <block wx:elif="{{favorites.length > 0}}">
+      <view 
+        class="favorite-item"
+        wx:for="{{favorites}}"
+        wx:key="musicId"
+        bindtap="playMusic"
+        data-id="{{item.musicId}}">
+        
+        <view class="item-number">{{index + 1}}</view>
+        <view class="item-info">
+          <view class="item-title">{{item.music.title}}</view>
+          <view class="item-artist">{{item.music.artist}}</view>
+        </view>
+        <view class="item-action">
+          <button 
+            class="remove-btn"
+            bindtap="removeFavorite"
+            data-id="{{item.musicId}}"
+            catchtap>
+            ✕
+          </button>
+        </view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="empty-state">
+        <view class="empty-icon">❤️</view>
+        <view class="empty-text">No favorites yet</view>
+        <navigator url="/pages/index/index" class="discover-link">
+          Discover Music
+        </navigator>
+      </view>
+    </block>
+  </scroll-view>
+</view>
